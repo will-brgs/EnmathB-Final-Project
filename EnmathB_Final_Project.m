@@ -3,7 +3,7 @@
 
 % * Author:                   Will Burgess
 % * Class:                    ESE 319
-% * Date:                     Created 4/28/2024, Last Edited 5/6/2024
+% * Date:                     Created 4/28/2024, Last Edited 
 %% Housekeeping
 close all
 clc
