@@ -30,7 +30,7 @@ end
 % calculations
 %% Objective 3: Genereate a Figure Displaying Concentration inside Sphere
 %independent Vars
-numvals = 100;
+numvals = 200;
 theta = linspace(0,2*pi,numvals); % Covers entire sphere
 r = linspace(0,2,numvals); % diamater is 6cm
 outputMerged = zeros(numvals,numvals);
@@ -46,7 +46,7 @@ constant = (2.*n + 1)/(2.^(n+1));
 integralIn = @(x) (1/6) .* besselk(0,sqrt((1+x)/2)) .* legendreP(n, x);
 integralOut = integral(integralIn,-1,1);
 outputTerm = constant .* integralOut .* r.^n;
-outputTerm = outputTerm.' * legendreP(n,cos(theta));
+outputTerm = (legendreP(n,cos(theta))).' * outputTerm;
 outputMerged = outputMerged + outputTerm;
 
 % Plotting Mesh Contributions
