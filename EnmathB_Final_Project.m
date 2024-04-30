@@ -1,6 +1,5 @@
 %% Enmath B Final Project:
 %% Introduction
-
 % * Author:                   Will Burgess
 % * Class:                    ESE 319
 % * Date:                     Created 4/28/2024, Last Edited 5/6/2024
@@ -9,7 +8,6 @@ close all
 clc
 clear
 filepath = "C:\Users\Will\OneDrive - Washington University in St. Louis\. EnMath B\Final Project\Figures";
-
 %% Objective 1: Find the Solution to the BVP
 % All relevant caclulations are done by hand and carried out in the
 % objective 2 calculation
@@ -30,9 +28,9 @@ end
 % calculations
 %% Objective 3: Genereate a Figure Displaying Concentration inside Sphere
 %independent Vars
-numvals = 200;
+numvals = 1000;
 theta = linspace(0,2*pi,numvals); % Covers entire sphere
-r = linspace(0,2,numvals); % diamater is 6cm
+r = linspace(0,2,numvals); % diamater is 4cm
 outputMerged = zeros(numvals,numvals);
 
 [meshR, meshTheta] = meshgrid(r, theta);
@@ -56,7 +54,7 @@ surf(meshR .* cos(meshTheta), meshR .* sin(meshTheta), outputTerm, 'edgecolor','
 xlabel('X Position (cm)'),ylabel('Y Position (cm)'),title(['n = ' num2str(n)])
 colormap('jet');
 bar = colorbar;
-caxis([-0.1, 0.14])
+caxis([-0.1, 0.1])
 ylabel(bar, 'Quantity Concentration'); 
 view(0,90);
 end
@@ -70,5 +68,5 @@ bar = colorbar;
 ylabel(bar, 'Quantity Concentration');
 view(0,90);
 %% Export Figures
-% exportgraphics(fig1, fullfile(filepath, 'Independent Output.jpg'), 'resolution', 300);
-% exportgraphics(fig2, fullfile(filepath, 'Merged Output.jpg'), 'resolution', 300);
+exportgraphics(fig1, fullfile(filepath, 'Independent Output.jpg'), 'resolution', 600);
+exportgraphics(fig2, fullfile(filepath, 'Merged Output.jpg'), 'resolution', 600);
