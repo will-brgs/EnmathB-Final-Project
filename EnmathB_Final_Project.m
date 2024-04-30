@@ -21,10 +21,10 @@ obj2_outputs = zeros(6,1);
 % Index 0
 for n = 0:5
 index = n + 1;
-constant = ((2.*n) + 1)/(2.^(n+1));
+constant = ((2.* n) + 1)/(2.^(n+1));
 integralIn = @(x) (1/6) .* besselk(0,sqrt((1+x)/2)) .* legendreP(n, x);
 integralOut = integral(integralIn,-1,1);
-obj2_outputs(index) = integralOut * constant;
+obj2_outputs(index) = integralOut .* constant;
 end
 % Direct inspection of the obj2_outputs variable is applied to hand
 % calculations
@@ -52,27 +52,23 @@ outputMerged = outputMerged + outputTerm;
 % Plotting Mesh Contributions
 
 subplot(3,2,figindex)
-Z = squeeze(outputTerm);
-surf(meshR .* cos(meshTheta), meshR .* sin(meshTheta), Z, 'edgecolor','none');
+surf(meshR .* cos(meshTheta), meshR .* sin(meshTheta), outputTerm, 'edgecolor','none');
 xlabel('X Position (cm)'),ylabel('Y Position (cm)'),title(['n = ' num2str(n)])
 colormap('jet');
 bar = colorbar;
 caxis([-0.1, 0.14])
-ylabel(bar, 'Quantity Concentration');
+ylabel(bar, 'Quantity Concentration'); 
 view(0,90);
-
 end
 
 %% Merged Mesh Figure
 fig2 = figure();
-Z = squeeze(outputMerged);
-surf(meshR .* cos(meshTheta), meshR .* sin(meshTheta), Z, 'edgecolor','none');
+surf(meshR .* cos(meshTheta), meshR .* sin(meshTheta), outputMerged, 'edgecolor','none');
 xlabel('X Position (cm)'),ylabel('Y Position (cm)'),title({'Quantity Concentration of a Uniform Slice of the Sphere' 'Merged Results of First 6 Nonzero Coefficients'})
 colormap('jet');
 bar = colorbar;
 ylabel(bar, 'Quantity Concentration');
 view(0,90);
-
 %% Export Figures
 % exportgraphics(fig1, fullfile(filepath, 'Independent Output.jpg'), 'resolution', 300);
 % exportgraphics(fig2, fullfile(filepath, 'Merged Output.jpg'), 'resolution', 300);
